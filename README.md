@@ -1,39 +1,85 @@
-# vue-project
+# Vue Project
 
-This template should help get you started developing with Vue 3 in Vite.
+## Teste - Desenvolvedor Frontend | Vue
 
-## Recommended IDE Setup
+### Desafio
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Olá, candidato!  
+Nesta etapa, você terá a oportunidade de demonstrar suas habilidades práticas desenvolvendo um pequeno projeto. É importante que você utilize todo o conhecimento que possui, criando um código limpo e bem estruturado, além de seguir boas práticas de programação e design patterns.
 
-## Type Support for `.vue` Imports in TS
+### Descrição
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+O desafio consiste em desenvolver uma aplicação de catálogo de empregos. Deve haver uma tela que liste as vagas disponíveis, além de algumas opções de interação. Utilize como base o modelo disponível no Dribbble.
 
-## Customize configuration
+### Requisitos
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- O projeto deve ser desenvolvido em Vue.
+- A aplicação deve ser interativa, com ordenação, busca e filtros funcionais.
+- Utilize dados estáticos que simulem dados retornados por uma API REST. Se preferir, utilize o JSON fornecido no gist.
+- Utilize o conceito de API REST com retornos no formato JSON.
 
-## Project Setup
+### Instruções
 
-```sh
+- Crie um repositório no GitHub e compartilhe com o perfil `vagasclinicaexperts`.
+- Utilize os comentários dos commits para documentar o processo de desenvolvimento.
+- Siga os princípios de clean code.
+- Crie uma documentação sobre como rodar o projeto.
+- Fique à vontade para utilizar bibliotecas/componentes externos.
+
+---
+
+## Descrição do Projeto
+
+O projeto foi desenvolvido com as seguintes tecnologias:
+
+- [Bun](https://bun.sh/)
+- [Vue 3](https://v3.vuejs.org/)
+- [Vite](https://vitejs.dev/)
+- [Vuetify](https://vuetifyjs.com/)
+- [Pinia](https://pinia.esm.dev/)
+- [Vue Router](https://router.vuejs.org/)
+- [Axios](https://axios-http.com/)
+- [ESLint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
+
+---
+
+## Comandos Básicos
+
+### Configuração do Projeto
+
+Instale as dependências com o [Bun](https://bun.sh/):
+
+### Instalando Dependências
+
+Execute o comando:
+
+```bash
 bun install
 ```
 
-### Compile and Hot-Reload for Development
+### Executando o Projeto (Localmente)
 
-```sh
-bun dev
+Execute o comando:
+
+```bash
+bun run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+## Comandos para Produção
 
-```sh
+### Construir o Projeto para Produção
+
+Quando estiver pronto para compilar o projeto para produção e minimizar os arquivos, execute:
+
+```bash
 bun run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+#### Este comando irá gerar os arquivos otimizados para produção na pasta `dist/`. Rodando o Servidor de Produção
 
-```sh
-bun lint
+### Para simular o ambiente de produção após o build, utilize o comando:
+
+```bash
+bun run preview
 ```
