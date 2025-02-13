@@ -1,6 +1,11 @@
-<script setup lang="ts">
+<script lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+export default {
+  components: {
+    HelloWorld,
+  },
+}
 </script>
 
 <template>
@@ -16,7 +21,7 @@ import HelloWorld from './components/HelloWorld.vue'
       </nav>
     </div>
   </header>
-
+  <v-card> <v-card-title> teste </v-card-title> </v-card>
   <RouterView />
 </template>
 
