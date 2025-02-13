@@ -1,12 +1,51 @@
-import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 
-export const useCounterStore = defineStore('counter', () => {
-  const count = ref(0)
-  const doubleCount = computed(() => count.value * 2)
-  function increment() {
-    count.value++
-  }
+export const useSnackbarStore = defineStore('snackbar', {
+  state: () => ({
+    state: false as boolean,
+    text: null as string,
+    icon: null as string,
+    timeout: 2500 as number,
+    color: '' as string,
+  }),
 
-  return { count, doubleCount, increment }
+  getters: {
+    getState(): boolean {
+      return this.state
+    },
+    getText(): string {
+      return this.text
+    },
+    getTimeout(): number {
+      return this.timeout
+    },
+    getColor(): string {
+      return this.color
+    },
+    getIcon(): string {
+      return this.icon
+    },
+  },
+
+  actions: {
+    setState(state: boolean) {
+      this.state = state
+    },
+
+    setText(text: string) {
+      this.text = text
+    },
+
+    setTimeout(timeout: number) {
+      this.timeout = timeout
+    },
+
+    setColor(color: string) {
+      this.color = color
+    },
+
+    setIcon(icon: string) {
+      this.icon = icon
+    },
+  },
 })
