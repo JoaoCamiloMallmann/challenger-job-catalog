@@ -1,0 +1,89 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/stylistic",
+    "plugin:vue/vue3-recommended",
+    "plugin:vue/vue3-strongly-recommended",
+    "prettier" // Deve estar por último para evitar conflitos com outras regras
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "parser": "@typescript-eslint/parser",
+    "sourceType": "module"
+  },
+  "plugins": ["vue", "@typescript-eslint"],
+  "rules": {
+    // Boas práticas gerais
+    "quotes": ["warn", "single", { "avoidEscape": true }],
+    "semi": ["error", "never"],
+    "no-multi-spaces": ["error"],
+    "no-multiple-empty-lines": ["error", { "max": 1 }],
+    "block-spacing": ["error", "always"],
+    "func-call-spacing": ["error", "never"],
+    "key-spacing": ["warn", { "beforeColon": false, "afterColon": true }],
+    "space-in-parens": ["warn", "never"],
+    "space-infix-ops": ["error", { "int32Hint": true }],
+    "arrow-spacing": ["error", { "before": true, "after": true }],
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "complexity": ["warn", 10], // Limita a complexidade de funções
+    "max-lines": ["warn", { "max": 300, "skipComments": true }],
+
+    // Regras para Vue
+    "vue/html-indent": ["error", 2],
+    "vue/html-closing-bracket-newline": [
+      "error",
+      { "singleline": "never", "multiline": "never" }
+    ],
+    "vue/singleline-html-element-content-newline": "off",
+    "vue/multiline-html-element-content-newline": "off",
+    "vue/max-attributes-per-line": [
+      "error",
+      {
+        "singleline": 3,
+        "multiline": { "max": 1, "allowFirstLine": false }
+      }
+    ],
+    "vue/no-unused-properties": [
+      "error",
+      { "groups": ["props", "data", "computed", "methods"] }
+    ],
+    "vue/component-name-in-template-casing": [
+      "error",
+      "kebab-case",
+      { "ignores": [] }
+    ],
+    "vue/component-tags-order": [
+      "error",
+      { "order": ["script", "template", "style"] }
+    ],
+    "vue/v-on-style": ["warn", "shorthand"],
+    "vue/order-in-components": ["error"],
+    "vue/this-in-template": ["warn", "never"],
+
+    // Regras para TypeScript
+    "@typescript-eslint/typedef": ["error", { "arrayDestructuring": true }],
+    "@typescript-eslint/no-inferrable-types": [
+      "error",
+      { "ignoreParameters": true }
+    ],
+    "@typescript-eslint/explicit-function-return-type": [
+      "error",
+      { "allowExpressions": true }
+    ],
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { "argsIgnorePattern": "^_" }
+    ],
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
+    "@typescript-eslint/array-type": ["error", { "default": "array-simple" }]
+  },
+  "globals": {
+    "google": "readonly"
+  }
+}
