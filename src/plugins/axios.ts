@@ -1,11 +1,8 @@
 import axios from 'axios'
 
 const api = axios.create({
-  baseURL:
-    typeof window == 'undefined'
-      ? 'https://smu.liquidworks.com.br/api'
-      : import.meta.env.VITE_URL_SERVIDOR + 'api/',
-  timeout: 30000,
+  baseURL: 'http://localhost:3000', // URL to the API
+  timeout: 30000, // timeout
   headers: {
     'Content-Type': 'application/json',
   },
