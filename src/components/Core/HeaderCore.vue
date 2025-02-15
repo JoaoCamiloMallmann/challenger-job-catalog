@@ -15,6 +15,7 @@ export default {
   <v-app-bar :elevation="0" style="background-color: #f2f3f7" class="px-12">
       <template v-slot:prepend>
         <svg
+        @click="goToHome"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 213 32"
           fill="none"

@@ -64,7 +64,7 @@ export default {
               we´ll keep you updated when the best ew remote jobs pop up on mimalayas
             </v-card-subtitle>
             <v-card-text>
-              <v-text-field variant="outlined" v-model="email" label="Email" class="w-100" />
+              <v-text-field type="email" variant="outlined" v-model="email" label="Email" class="w-100" />
               <span class="text-caption"> We are about your data in our privacy policy </span>
 
               <v-btn
