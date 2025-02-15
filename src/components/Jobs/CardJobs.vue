@@ -6,8 +6,24 @@ export default {
     job: {
       type: Object as () => Jobs,
       required: false,
-      default: [],
+      default: () => ({} as Jobs),
     },
+  },
+
+  methods: {
+
+    jobRatingColor(rating: number): string {
+      if (rating >= 4) {
+      return 'success'
+      } else if (rating >= 3) {
+      return 'warning'
+      } else if (rating >= 1) {
+      return 'error'
+      } else {
+      return 'grey'
+      }
+    },
+
   },
 }
 </script>
@@ -23,7 +39,7 @@ export default {
       <v-row align="center">
         <v-col cols="auto">
           <v-avatar size="50">
-            <v-img :src="job.companyLogoUrl" alt="Company Logo"></v-img>
+            <v-img :src="job.companyLogoUrl" alt="Company Logo" />
           </v-avatar>
         </v-col>
 
@@ -36,10 +52,10 @@ export default {
 
           <p class="text-caption text-grey">
             <v-icon size="16" class="mr-1">mdi-cash-multiple</v-icon>
-            {{ job.payCurrency }} {{ job.annualWage }} / {{ job.payPeriod }}
+            {{ job.payCurrency }} ${{ job.annualWage }} / {{ job.payPeriod }}
           </p>
 
-          <v-chip color="green" size="small" class="mr-1">
+          <v-chip :color="jobRatingColor(job.rating)" size="small" class="mr-1">
             <v-icon size="16" class="mr-1">mdi-star</v-icon> {{ job.rating }}
           </v-chip>
         </v-col>

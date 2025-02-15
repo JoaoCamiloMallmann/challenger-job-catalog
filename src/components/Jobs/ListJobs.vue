@@ -25,27 +25,20 @@ export default {
               {{ filterJobs.length }} jobs
             </span>
           </v-col>
-
-          <v-col cols="auto">
-            <v-select
-              class="w-100"
-              density="comfortable"
-              variant="outlined"
-              style="min-width: 150px"
-            />
-          </v-col>
         </v-row>
       </div>
 
-      <template v-for="job in filterJobs" :key="job.id">
-        <CardJobs :job="job" />
-      </template>
+      <v-slide-x-transition group>
+        <div v-for="(job, index) in filterJobs" :key="index">
+          <CardJobs :job="job" />
+        </div>
+      </v-slide-x-transition>
     </v-col>
 
     <v-col cols="0" md="3">
       <v-row>
         <v-col cols="12" class="mt-12">
-          <v-card color="primary" class="mx-auto w-100 mt-12 rounded-lg" variant="tonal">
+          <v-card color="primary" class="mx-auto w-100 mt-8 rounded-lg" variant="tonal">
             <v-btn color="primary" icon="mdi-email" variant="tonal" class="ml-3 mt-3" />
             <v-card-title class="font-weight-bold"> Weekly newsletter </v-card-title>
             <v-card-subtitle class="text-body-1 text-wrap">
