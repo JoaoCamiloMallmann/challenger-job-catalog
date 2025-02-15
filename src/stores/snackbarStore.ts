@@ -6,7 +6,7 @@ export const useSnackbarStore = defineStore('snackbar', {
     text: null as string,
     icon: null as string,
     timeout: 2500 as number,
-    color: '' as string,
+    color: null as string,
   }),
 
   getters: {
@@ -46,6 +46,31 @@ export const useSnackbarStore = defineStore('snackbar', {
 
     setIcon(icon: string) {
       this.icon = icon
+    },
+
+    message(msg: string) {
+      this.setText(msg)
+      this.setState(true)
+
+      setTimeout(() => {
+        this.setState(false)
+      }, this.timeout)
+    },
+
+    snackbar() {
+      return {
+        error: (msg: string) => {
+          this.setColor('error')
+          this.setIcon('mdi-alert')
+          this.message(msg)
+        },
+
+        success: (msg: string) => {
+          this.setColor('success')
+          this.setIcon('mdi-check')
+          this.message(msg)
+        },
+      }
     },
   },
 })

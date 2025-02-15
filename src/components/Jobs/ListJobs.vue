@@ -1,15 +1,34 @@
 <script lang="ts">
 import type { Jobs } from '@/types/Jobs'
 import CardJobs from './CardJobs.vue'
+import { mapActions } from 'pinia'
+import { useSnackbarStore } from '@/stores/snackbarStore'
 export default {
   components: {
     CardJobs,
+  },
+
+  data() {
+    return {
+      email: null as string,
+    }
   },
   props: {
     filterJobs: {
       type: Array as () => Array<Jobs>,
       required: false,
       default: [],
+    },
+  },
+
+  methods: {
+    ...mapActions(useSnackbarStore, ['snackbar']),
+
+    emailSubscribe() {
+      if (this.email) {
+        this.email = null
+        this.snackbar().success('You have successfully subscribed to the newsletter')
+      }
     },
   },
 }
@@ -45,10 +64,16 @@ export default {
               we´ll keep you updated when the best ew remote jobs pop up on mimalayas
             </v-card-subtitle>
             <v-card-text>
-              <v-text-field variant="outlined" label="Email" class="w-100" />
+              <v-text-field variant="outlined" v-model="email" label="Email" class="w-100" />
               <span class="text-caption"> We are about your data in our privacy policy </span>
 
-              <v-btn class="w-100 mt-3 rounded-lg" color="primary" elevation="0">Subscribe</v-btn>
+              <v-btn
+                class="w-100 mt-3 rounded-lg"
+                color="primary"
+                @click="emailSubscribe"
+                elevation="0"
+                >Subscribe</v-btn
+              >
             </v-card-text>
           </v-card>
         </v-col>

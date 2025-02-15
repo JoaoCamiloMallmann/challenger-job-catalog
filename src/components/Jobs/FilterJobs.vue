@@ -19,7 +19,7 @@ export default {
       country: null as string,
       company: null as string,
       salary: null as number,
-      payPeriod: null as number,
+      payPeriod: null as string,
     }
   },
 
@@ -48,19 +48,19 @@ export default {
       let jobs = [...this.jobs] as Jobs[]
 
       if (this.title) {
-        jobs = jobs.filter((job: Job) =>
+        jobs = jobs.filter((job: Jobs) =>
           job.jobTitleText.toLowerCase().includes(this.title.toLowerCase()),
         )
       }
 
       if (this.country) {
-        jobs = jobs.filter((job: Job) =>
+        jobs = jobs.filter((job: Jobs) =>
           job.locationName.toLowerCase().includes(this.country.toLowerCase()),
         )
       }
 
       if (this.company) {
-        jobs = jobs.filter((job: Job) =>
+        jobs = jobs.filter((job: Jobs) =>
           job.companyName.toLowerCase().includes(this.company.toLowerCase()),
         )
       }
