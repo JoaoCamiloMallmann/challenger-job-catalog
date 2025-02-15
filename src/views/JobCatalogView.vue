@@ -16,6 +16,7 @@ export default {
     }
   },
 
+
   mounted() {
     this.fetchJobs()
   },
@@ -299,8 +300,11 @@ export default {
 </script>
 
 <template>
-  <FilterJobs :jobs="allJobs" />
-  <ListJobs :filter-jobs="allJobs" />
+  <FilterJobs
+    :jobs="allJobs"
+    @filter-jobs="(e) => filteredJobs = e"
+  />
+  <ListJobs :filter-jobs="filteredJobs" />
 </template>
 
 <style></style>

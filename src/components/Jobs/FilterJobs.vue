@@ -17,24 +17,74 @@ export default {
     return {
       title: null as string,
       country: null as string,
+      company: null as string,
+      salary: null as number,
+      payPeriod: null as number,
     }
   },
 
-  methods: {
-    filteredJobs() {
-      const jobs = this.jobs.filter((job) => {
-        const title = job.jobTitleText.toLowerCase()
-        return (
-          title.includes(this.title?.toLowerCase() || '') &&
-          job.companyName.toLowerCase().includes(this.country?.toLowerCase() || '')
-        )
+  computed: {
+    filtredCompany(): string[] {
+      const companies = []
+      this.jobs?.forEach((job) => {
+        if (!companies.includes(job.companyName)) {
+          companies.push(job.companyName)
+        }
       })
-      this.$emit('filter-jobs', jobs)
+      return companies
     },
 
+    filtredPayPeriod(): string[] {
+      const payPeriod = []
+      this.jobs?.forEach((job) => {
+        if (!payPeriod.includes(job.payPeriod)) {
+          payPeriod.push(job.payPeriod)
+        }
+      })
+      return payPeriod
+    },
+
+    filteredJobs(): void {
+      let jobs = [...this.jobs] as Jobs[]
+
+      if (this.title) {
+        jobs = jobs.filter((job: Job) =>
+          job.jobTitleText.toLowerCase().includes(this.title.toLowerCase()),
+        )
+      }
+
+      if (this.country) {
+        jobs = jobs.filter((job: Job) =>
+          job.locationName.toLowerCase().includes(this.country.toLowerCase()),
+        )
+      }
+
+      if (this.company) {
+        jobs = jobs.filter((job: Job) =>
+          job.companyName.toLowerCase().includes(this.company.toLowerCase()),
+        )
+      }
+
+      if (this.salary) {
+        jobs = jobs.filter((job: Jobs) => job.annualWage >= this.salary)
+      }
+
+      this.$emit('filter-jobs', jobs)
+    },
+  },
+
+  methods: {
     isMobile(): boolean {
       const { mobile } = useDisplay()
       return mobile.value
+    },
+
+    clearAllFilter(): void {
+      this.title = null
+      this.country = null
+      this.company = null
+      this.salary = null
+      this.payPeriod = null
     },
   },
 }
@@ -70,52 +120,67 @@ export default {
 
     <v-card class="w-75 bg-white elevation-0 rounded-lg pa-4">
       <v-row class="align-center">
-        <!-- Campo de busca da área -->
         <v-col cols="12" md="5">
           <v-text-field
             v-model="title"
             class="rounded-0"
             variant="outlined"
             prepend-inner-icon="mdi-magnify"
-            label="Selecione a área"
+            label="Job title, keywords or company"
             density="comfortable"
           />
         </v-col>
 
-        <!-- Campo de busca da cidade -->
         <v-col cols="12" md="5">
           <v-text-field
             v-model="country"
             class="rounded-0"
             variant="outlined"
             prepend-inner-icon="mdi-magnify"
-            label="Selecione a cidade"
+            label="Country"
             density="comfortable"
           />
         </v-col>
 
-        <!-- Botões "Clear" e "Search" -->
         <v-col cols="12" md="2" class="d-flex justify-end">
-          <v-btn v-if="isMobile" variant="text">CLEAR</v-btn>
-          <v-btn color="primary" elevation="0">SEARCH</v-btn>
+          <v-btn v-if="isMobile" variant="text" @click="((title = null), (country = null))"
+            >CLEAR</v-btn
+          >
+          <v-btn color="primary" elevation="0" @click="filteredJobs">SEARCH</v-btn>
         </v-col>
       </v-row>
 
-      <!-- Segunda linha: Filtros -->
       <v-row v-if="isMobile" class="mt-2">
         <v-col cols="12" md="3">
-          <v-select label="Company" variant="outlined" density="comfortable"></v-select>
+          <v-autocomplete
+            v-model="company"
+            label="Company"
+            variant="outlined"
+            density="comfortable"
+            :items="filtredCompany"
+          />
         </v-col>
         <v-col cols="12" md="3">
-          <v-select label="Type of work" variant="outlined" density="comfortable"></v-select>
+          <v-autocomplete
+            v-model="payPeriod"
+            label="Pay Period"
+            variant="outlined"
+            density="comfortable"
+            :items="filtredPayPeriod"
+          />
         </v-col>
         <v-col cols="12" md="3">
-          <v-select label="Salary" variant="outlined" density="comfortable"></v-select>
+          <v-number-input
+            v-model="salary"
+            label="Salary"
+            variant="outlined"
+            prefix="$"
+            density="comfortable"
+          />
         </v-col>
 
-        <!-- Botão "Clear All" à direita -->
         <v-col v-if="isMobile" cols="12" md="3" class="d-flex justify-end align-center">
-          <v-btn variant="text">CLEAR ALL</v-btn>
+          <v-btn variant="text" @click="clearAllFilter()">CLEAR ALL</v-btn>
         </v-col>
       </v-row>
     </v-card>
