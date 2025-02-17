@@ -2,39 +2,14 @@
 
 ## Teste - Desenvolvedor Frontend | Vue
 
-### Desafio
+### Descrição do Projeto
 
-Olá, candidato!  
-Nesta etapa, você terá a oportunidade de demonstrar suas habilidades práticas desenvolvendo um pequeno projeto. É importante que você utilize todo o conhecimento que possui, criando um código limpo e bem estruturado, além de seguir boas práticas de programação e design patterns.
+Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 
-### Descrição
-
-O desafio consiste em desenvolver uma aplicação de catálogo de empregos. Deve haver uma tela que liste as vagas disponíveis, além de algumas opções de interação. Utilize como base o modelo disponível no Dribbble.
-
-### Requisitos
-
-- O projeto deve ser desenvolvido em Vue.
-- A aplicação deve ser interativa, com ordenação, busca e filtros funcionais.
-- Utilize dados estáticos que simulem dados retornados por uma API REST. Se preferir, utilize o JSON fornecido no gist.
-- Utilize o conceito de API REST com retornos no formato JSON.
-
-### Instruções
-
-- Crie um repositório no GitHub e compartilhe com o perfil `vagasclinicaexperts`.
-- Utilize os comentários dos commits para documentar o processo de desenvolvimento.
-- Siga os princípios de clean code.
-- Crie uma documentação sobre como rodar o projeto.
-- Fique à vontade para utilizar bibliotecas/componentes externos.
-
----
-
-## Descrição do Projeto
-
-O projeto foi desenvolvido com as seguintes tecnologias:
-
-- [Bun](https://bun.sh/)
+- [Bun](https://bun.sh/) | [Node.js](https://nodejs.org/)
 - [Vue 3](https://v3.vuejs.org/)
 - [Vite](https://vitejs.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
 - [Vuetify](https://vuetifyjs.com/)
 - [Pinia](https://pinia.esm.dev/)
 - [Vue Router](https://router.vuejs.org/)
@@ -42,44 +17,66 @@ O projeto foi desenvolvido com as seguintes tecnologias:
 - [ESLint](https://eslint.org/)
 - [Prettier](https://prettier.io/)
 
----
+### Comandos Básicos
 
-## Comandos Básicos
+#### Configuração do Projeto
 
-### Configuração do Projeto
-
-Instale as dependências com o [Bun](https://bun.sh/):
-
-### Instalando Dependências
-
-Execute o comando:
+Instale as dependências com o [Bun](https://bun.sh/) ou [Node.js](https://nodejs.org/):
 
 ```bash
-bun install
+bun install || npm install
 ```
 
-### Executando o Projeto (Localmente)
+#### Executando o Projeto (Localmente)
 
-Execute o comando:
+Para iniciar o ambiente de desenvolvimento, execute:
 
 ```bash
 bun run dev
 ```
 
-## Comandos para Produção
+### Comandos para Produção
 
-### Construir o Projeto para Produção
+#### Construção do Projeto para Produção
 
-Quando estiver pronto para compilar o projeto para produção e minimizar os arquivos, execute:
+Para compilar e otimizar os arquivos para produção, execute:
 
 ```bash
 bun run build
 ```
 
-#### Este comando irá gerar os arquivos otimizados para produção na pasta `dist/`. Rodando o Servidor de Produção
+Este comando gerará os arquivos otimizados na pasta `dist/`.
 
-### Para simular o ambiente de produção após o build, utilize o comando:
+#### Rodando o Servidor de Produção
+
+Para simular o ambiente de produção após o build, utilize:
 
 ```bash
 bun run preview
 ```
+
+---
+
+# Desafio
+
+Olá, candidato!
+
+Nesta etapa, você terá a oportunidade de demonstrar suas habilidades práticas desenvolvendo um pequeno projeto. É essencial que você aplique seus conhecimentos, criando um código limpo e bem estruturado, seguindo boas práticas de programação e design patterns.
+
+### Descrição
+
+O desafio consiste em desenvolver uma aplicação de catálogo de empregos. A aplicação deve conter uma tela que liste as vagas disponíveis, além de oferecer opções de interação. Utilize como referência um modelo disponível no Dribbble.
+
+### Requisitos
+
+- O projeto deve ser desenvolvido em Vue.
+- A aplicação deve ser interativa, com funcionalidades de ordenação, busca e filtros.
+- Utilize dados estáticos que simulem respostas de uma API REST. Se preferir, utilize o JSON fornecido no gist.
+- Aplique conceitos de API REST com respostas no formato JSON.
+
+### Instruções
+
+- Utilize os commits para documentar o processo de desenvolvimento.
+- Siga os princípios do clean code.
+- Inclua uma documentação explicando como rodar o projeto.
+- Fique à vontade para utilizar bibliotecas e componentes externos.
