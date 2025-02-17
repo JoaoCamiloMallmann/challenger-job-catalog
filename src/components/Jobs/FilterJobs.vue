@@ -106,7 +106,7 @@ export default {
 
 <template>
   <v-sheet class="bg-secondary d-flex justify-center align-center w-100 d-flex flex-column pb-8">
-    <v-container class="my-5">
+    <v-card class="my-5 w-75 mx-auto bg-transparent elevation-0">
       <v-row>
         <v-col>
           <span class="text-grey-darken-1 text-body-2">Remote jobs</span>
@@ -130,7 +130,7 @@ export default {
           </p>
         </v-col>
       </v-row>
-    </v-container>
+    </v-card>
 
     <v-card class="w-75 bg-white elevation-0 rounded-lg pa-4">
       <v-row class="align-center">
@@ -170,7 +170,7 @@ export default {
       </v-row>
 
       <v-row v-if="!isMobile" class="mt-2">
-        <v-col cols="12" md="3">
+        <v-col cols="12" md="2">
           <v-autocomplete
             v-model="company"
             label="Company"
@@ -179,7 +179,7 @@ export default {
             :items="filtredCompany"
           />
         </v-col>
-        <v-col cols="12" md="3">
+        <v-col cols="12" md="2">
           <v-autocomplete
             v-model="payPeriod"
             label="Pay Period"
@@ -188,7 +188,7 @@ export default {
             :items="filtredPayPeriod"
           />
         </v-col>
-        <v-col cols="12" md="3">
+        <v-col cols="12" md="2">
           <v-number-input
             v-model="salary"
             label="Salary"
@@ -198,7 +198,7 @@ export default {
           />
         </v-col>
 
-        <v-col cols="12" md="3" class="d-flex justify-end align-center">
+        <v-col cols="12" md="" class="d-flex justify-end align-center">
           <v-btn variant="text" @click="clearAllFilter()">CLEAR ALL</v-btn>
         </v-col>
       </v-row>

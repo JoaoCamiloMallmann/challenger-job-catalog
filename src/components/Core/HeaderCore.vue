@@ -56,7 +56,7 @@ export default {
           </v-btn>
         </template>
 
-        <v-list elevation="12" >
+        <v-list bg-color="secondary" elevation="6" >
           <v-list-item  color="primary" @click="goToJobs">
             <v-list-item-title>Jobs</v-list-item-title>
           </v-list-item>
