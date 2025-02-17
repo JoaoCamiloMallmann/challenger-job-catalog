@@ -1,29 +1,30 @@
 <script lang="ts">
+import { useDisplay } from 'vuetify'
 import { Jobs } from '@/types/Jobs'
 
 export default {
+  setup() {
+    const { smAndDown } = useDisplay()
+    return {
+      isMobile: smAndDown,
+    }
+  },
+
   props: {
     job: {
       type: Object as () => Jobs,
       required: false,
-      default: () => ({} as Jobs),
+      default: () => ({}) as Jobs,
     },
   },
 
   methods: {
-
     jobRatingColor(rating: number): string {
-      if (rating >= 4) {
-      return 'success'
-      } else if (rating >= 3) {
-      return 'warning'
-      } else if (rating >= 1) {
-      return 'error'
-      } else {
+      if (rating >= 4) return 'success'
+      if (rating >= 3) return 'warning'
+      if (rating >= 1) return 'error'
       return 'grey'
-      }
     },
-
   },
 }
 </script>
@@ -37,20 +38,20 @@ export default {
       class="w-75 my-5 py-6 px-5 rounded-lg border border-grey-lighten-2 mx-auto"
     >
       <v-row align="center">
-        <v-col cols="auto">
-          <v-avatar size="50">
+        <v-col cols="12" md="auto">
+          <v-avatar size="64">
             <v-img :src="job.companyLogoUrl" alt="Company Logo" />
           </v-avatar>
         </v-col>
 
         <v-col>
-          <h3 class="font-weight-bold">{{ job.jobTitleText }}</h3>
-          <p class="text-caption">
+          <h3 class="font-weight-bold text-body-1 text-md-h6">{{ job.jobTitleText }}</h3>
+          <p class="text-caption text-grey-darken-1">
             <strong>{{ job.companyName }}</strong>
             <v-icon size="16" class="mx-1">mdi-map-marker</v-icon> {{ job.locationName }}
           </p>
 
-          <p class="text-caption text-grey">
+          <p class="text-caption text-grey-darken-2">
             <v-icon size="16" class="mr-1">mdi-cash-multiple</v-icon>
             {{ job.payCurrency }} ${{ job.annualWage }} / {{ job.payPeriod }}
           </p>
@@ -59,8 +60,6 @@ export default {
             <v-icon size="16" class="mr-1">mdi-star</v-icon> {{ job.rating }}
           </v-chip>
         </v-col>
-
-        <v-col cols="auto" class="text-right"> </v-col>
       </v-row>
     </v-card>
   </v-hover>

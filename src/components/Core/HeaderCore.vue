@@ -3,7 +3,7 @@ import { useDisplay } from 'vuetify'
 
 export default {
   setup() {
-    const { smAndDown } = useDisplay() // Detecta telas pequenas
+    const { smAndDown } = useDisplay() 
 
     return {
       isMobile: smAndDown,

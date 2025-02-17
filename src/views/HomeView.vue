@@ -5,7 +5,7 @@ export default {
       this.$router.push('/')
     },
     goToJobs() {
-      this.$router.push('/catalogo-de-empregos') // Corrigido erro no nome do link
+      this.$router.push('/catalogo-de-empregos') 
     },
   },
 }
