@@ -36,7 +36,7 @@ export const useSnackbarStore = defineStore('snackbar', {
       this.text = text
     },
 
-    setTimeout(timeout: number) {
+    setTimeout(p0: () => void, timeout: number) {
       this.timeout = timeout
     },
 

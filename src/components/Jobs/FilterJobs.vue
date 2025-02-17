@@ -3,6 +3,14 @@ import type { Jobs } from '@/types/Jobs'
 import { useDisplay } from 'vuetify'
 
 export default {
+  setup() {
+    const { smAndDown } = useDisplay() // Detecta telas pequenas
+
+    return {
+      isMobile: smAndDown,
+    }
+  },
+
   props: {
     jobs: {
       type: Array as () => Array<Jobs>,
@@ -21,6 +29,16 @@ export default {
       salary: null as number,
       payPeriod: null as string,
     }
+  },
+
+  watch: {
+    jobs: {
+      handler() {
+        this.filteredJobs()
+      },
+      deep: true,
+      immediate: true,
+    },
   },
 
   computed: {
@@ -43,7 +61,9 @@ export default {
       })
       return payPeriod
     },
+  },
 
+  methods: {
     filteredJobs(): void {
       let jobs = [...this.jobs] as Jobs[]
 
@@ -71,13 +91,6 @@ export default {
 
       this.$emit('filter-jobs', jobs)
     },
-  },
-
-  methods: {
-    isMobile(): boolean {
-      const { mobile } = useDisplay()
-      return mobile.value
-    },
 
     clearAllFilter(): void {
       this.title = null
@@ -85,6 +98,7 @@ export default {
       this.company = null
       this.salary = null
       this.payPeriod = null
+      this.filteredJobs()
     },
   },
 }
@@ -142,15 +156,20 @@ export default {
           />
         </v-col>
 
-        <v-col cols="12" md="2" class="d-flex justify-end">
-          <v-btn v-if="isMobile" variant="text" @click="((title = null), (country = null))"
-            >CLEAR</v-btn
-          >
-          <v-btn color="primary" elevation="0" @click="filteredJobs">SEARCH</v-btn>
+        <v-col cols="12" class="d-flex justify-end align-center overflow-hidden" md="2" >
+          <v-btn
+            v-if="!isMobile"
+            variant="text"
+            @click="((title = null), (country = null), filteredJobs())">
+            CLEAR
+          </v-btn>
+          <v-btn color="primary" :class="{ 'w-100': isMobile }" elevation="0" @click="filteredJobs">
+            SEARCH
+          </v-btn>
         </v-col>
       </v-row>
 
-      <v-row v-if="isMobile" class="mt-2">
+      <v-row v-if="!isMobile" class="mt-2">
         <v-col cols="12" md="3">
           <v-autocomplete
             v-model="company"
@@ -179,7 +198,7 @@ export default {
           />
         </v-col>
 
-        <v-col v-if="isMobile" cols="12" md="3" class="d-flex justify-end align-center">
+        <v-col cols="12" md="3" class="d-flex justify-end align-center">
           <v-btn variant="text" @click="clearAllFilter()">CLEAR ALL</v-btn>
         </v-col>
       </v-row>

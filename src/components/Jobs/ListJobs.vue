@@ -3,7 +3,17 @@ import type { Jobs } from '@/types/Jobs'
 import CardJobs from './CardJobs.vue'
 import { mapActions } from 'pinia'
 import { useSnackbarStore } from '@/stores/snackbarStore'
+import { useDisplay } from 'vuetify';
+
 export default {
+  setup() {
+    const { smAndDown } = useDisplay() // Detecta telas pequenas
+
+    return {
+      isMobile: smAndDown,
+    }
+  },
+
   components: {
     CardJobs,
   },
@@ -11,6 +21,7 @@ export default {
   data() {
     return {
       email: null as string,
+      loading: false as boolean,
     }
   },
   props: {
@@ -24,10 +35,15 @@ export default {
   methods: {
     ...mapActions(useSnackbarStore, ['snackbar']),
 
-    emailSubscribe() {
+    emailSubscribe(): void {
       if (this.email) {
-        this.email = null
-        this.snackbar().success('You have successfully subscribed to the newsletter')
+        this.loading = true
+
+        setTimeout(() => {
+          this.loading = false
+          this.email = null
+          this.snackbar().success('You have successfully subscribed to the newsletter')
+        }, 5000)
       }
     },
   },
@@ -54,7 +70,7 @@ export default {
       </v-slide-x-transition>
     </v-col>
 
-    <v-col cols="0" md="3">
+    <v-col v-if="!isMobile" cols="0" md="3">
       <v-row>
         <v-col cols="12" class="mt-12">
           <v-card color="primary" class="mx-auto w-100 mt-8 rounded-lg" variant="tonal">
@@ -64,13 +80,21 @@ export default {
               we´ll keep you updated when the best ew remote jobs pop up on mimalayas
             </v-card-subtitle>
             <v-card-text>
-              <v-text-field type="email" variant="outlined" v-model="email" label="Email" class="w-100" />
+              <v-text-field
+                type="email"
+                :loading="loading"
+                variant="outlined"
+                v-model="email"
+                label="Email"
+                class="w-100"
+              />
               <span class="text-caption"> We are about your data in our privacy policy </span>
 
               <v-btn
+                :loading="loading"
                 class="w-100 mt-3 rounded-lg"
                 color="primary"
-                @click="emailSubscribe"
+                @click="emailSubscribe()"
                 elevation="0"
                 >Subscribe</v-btn
               >
