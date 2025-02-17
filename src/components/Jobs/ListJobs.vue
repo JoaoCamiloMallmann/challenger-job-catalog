@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { Jobs } from '@/types/Jobs'
+import type { Job } from '@/types/Job'
 import CardJobs from './CardJobs.vue'
 import { mapActions } from 'pinia'
 import { useSnackbarStore } from '@/stores/snackbarStore'
@@ -7,7 +7,7 @@ import { useDisplay } from 'vuetify';
 
 export default {
   setup() {
-    const { smAndDown } = useDisplay() 
+    const { smAndDown } = useDisplay()
 
     return {
       isMobile: smAndDown,
@@ -26,7 +26,7 @@ export default {
   },
   props: {
     filterJobs: {
-      type: Array as () => Array<Jobs>,
+      type: Array as () => Array<Job>,
       required: false,
       default: [],
     },

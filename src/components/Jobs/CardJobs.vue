@@ -1,6 +1,6 @@
 <script lang="ts">
 import { useDisplay } from 'vuetify'
-import { Jobs } from '@/types/Jobs'
+import { Job } from '@/types/Job'
 
 export default {
   setup() {
@@ -12,9 +12,9 @@ export default {
 
   props: {
     job: {
-      type: Object as () => Jobs,
+      type: Object as () => Job,
       required: false,
-      default: () => ({}) as Jobs,
+      default: () => ({}) as Job,
     },
   },
 

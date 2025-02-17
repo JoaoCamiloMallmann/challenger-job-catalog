@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { Jobs } from '@/types/Jobs'
+import type { Job } from '@/types/Job'
 import { useDisplay } from 'vuetify'
 
 export default {
@@ -13,7 +13,7 @@ export default {
 
   props: {
     jobs: {
-      type: Array as () => Array<Jobs>,
+      type: Array as () => Array<Job>,
       required: false,
       default: [],
     },
@@ -65,28 +65,28 @@ export default {
 
   methods: {
     filteredJobs(): void {
-      let jobs = [...this.jobs] as Jobs[]
+      let jobs = [...this.jobs] as Job[]
 
       if (this.title) {
-        jobs = jobs.filter((job: Jobs) =>
+        jobs = jobs.filter((job: Job) =>
           job.jobTitleText.toLowerCase().includes(this.title.toLowerCase()),
         )
       }
 
       if (this.country) {
-        jobs = jobs.filter((job: Jobs) =>
+        jobs = jobs.filter((job: Job) =>
           job.locationName.toLowerCase().includes(this.country.toLowerCase()),
         )
       }
 
       if (this.company) {
-        jobs = jobs.filter((job: Jobs) =>
+        jobs = jobs.filter((job: Job) =>
           job.companyName.toLowerCase().includes(this.company.toLowerCase()),
         )
       }
 
       if (this.salary) {
-        jobs = jobs.filter((job: Jobs) => job.annualWage >= this.salary)
+        jobs = jobs.filter((job: Job) => job.annualWage >= this.salary)
       }
 
       this.$emit('filter-jobs', jobs)

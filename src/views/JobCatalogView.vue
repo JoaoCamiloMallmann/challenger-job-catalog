@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { Jobs } from '@/types/Jobs'
+import type { Job } from '@/types/Job'
 import { jobServiceApi } from '@/service/api/jobs'
 import ListJobs from '@/components/Jobs/ListJobs.vue'
 import FilterJobs from '@/components/Jobs/FilterJobs.vue'
@@ -11,8 +11,8 @@ export default {
 
   data() {
     return {
-      allJobs: [] as Jobs[],
-      filteredJobs: [] as Jobs[],
+      allJobs: [] as Job[],
+      filteredJobs: [] as Job[],
     }
   },
 
